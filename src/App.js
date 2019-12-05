@@ -14,7 +14,7 @@ class app extends React.Component {
 
   getToken(){
     const url = window.location.href;
-    if(window.location.href){
+    if(window.location.href.includes('access_token=')){
     const params = url.split('access_token=')
     var token  = params[1].split("&")
     
@@ -26,7 +26,7 @@ componentDidMount() {
   this.getToken();
 }
 render() {
-  if(this.state.isConnected){
+  if(!this.state.isConnected){
   return(
   <div className="App">
   <ButtonLogin/>
