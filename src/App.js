@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ButtonLogin from './components/ButtonLogin.jsx'
 
-function App() {
-  return (
+class app extends React.Component {
+  constructor() {
+      super();
+
+      this.state = {
+        isConnected : false,
+        userToken: null,
+      } 
+  }
+
+  getToken(){
+    const url = window.location.href;
+    if(window.location.href){
+    const params = url.split('access_token=')
+    var token  = params[1].split("&")
+    
+    this.setState({ userToken: token[0] })
+    this.setState({isConnected :true})
+  }
+}
+componentDidMount() {
+  this.getToken();
+}
+render() {
+  if(this.state.isConnected){
+  return(
+  <div className="App">
+  <ButtonLogin/>
+  </div>
+  )
+} else{
+  return(
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    T'es déjà connecté
     </div>
-  );
+    )
+}
+}
 }
 
-export default App;
+  
+
+
+export default app;
+
