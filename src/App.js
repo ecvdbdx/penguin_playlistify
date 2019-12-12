@@ -33,11 +33,19 @@ render() {
   </div>
   )
 } else{
-  return(
-    <div className="App">
-    T'es déjà connecté
-    </div>
-    )
+
+  var myHeaders = new Headers();
+  myHeaders.append('Authorization', 'Bearer ' + this.state.userToken);
+
+  var myInit = { method: 'GET',
+    headers: myHeaders,
+    mode: 'cors',
+    cache: 'default' };
+
+  fetch('https://api.spotify.com/v1/me',myInit)
+  .then(function(response) {
+    console.log(response);
+  })
 }
 }
 }
