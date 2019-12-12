@@ -1,15 +1,14 @@
 import React from 'react';
 import './App.css';
 import ButtonLogin from './components/ButtonLogin.jsx'
+import Playlists from './components/Playlists.jsx';
 
 class app extends React.Component {
   constructor() {
       super();
+    
+      this.getToken();
 
-      this.state = {
-        isConnected : false,
-        userToken: null,
-      } 
   }
 
   getToken(){
@@ -18,26 +17,26 @@ class app extends React.Component {
     const params = url.split('access_token=')
     var token  = params[1].split("&")
     
-    this.setState({ userToken: token[0] })
-    this.setState({isConnected :true})
+    // this.setState({ userToken: token[0] })
+    // this.setState({isConnected :true})
+    sessionStorage.setItem('userToken', token[0])
   }
 }
-componentDidMount() {
-  this.getToken();
-}
 render() {
-  if(!this.state.isConnected){
+    const sessionToken = sessionStorage.getItem('userToken');
+
+  if(!sessionToken){
   return(
   <div className="App">
   <ButtonLogin/>
   </div>
   )
 } else{
-  return(
-    <div className="App">
-    T'es déjà connecté
-    </div>
-    )
+
+  return (
+    <Playlists />
+    // <p>Bitch</p>s
+  )
 }
 }
 }
