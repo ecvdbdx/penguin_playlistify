@@ -39,7 +39,7 @@ export default class Playlists extends React.Component {
     }
     render() {
         if (this.state.playlists.length === 0) {
-            return <p>Ça charge connard...</p>
+            return <p>A winner is you</p>
         } else {
             const mesComp = this.state.playlists['items'].map((playlist, key) =>
                 <Playlist key={key} name={playlist.name} image={playlist.images} alt={playlist.description} />
