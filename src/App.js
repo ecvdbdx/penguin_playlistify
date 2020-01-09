@@ -16,7 +16,9 @@ class app extends React.Component {
   }
 
   AddPageDisplayState() {
-    this.setState({displayAdd : !this.state.displayAdd})
+    this.setState((state) => ({
+      displayAdd: !state.displayAdd
+    }));
   }
 
 
