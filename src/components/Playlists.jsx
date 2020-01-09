@@ -26,11 +26,11 @@ export default class Playlists extends React.Component {
 
         fetch('https://api.spotify.com/v1/me/playlists', myInit)
             .then(function (response) {
-                console.log('resp', response)
+                // console.log('resp', response)
                 return response.json();
             })
             .then(data => {
-                console.log('data', data);
+                // console.log('data', data);
                 this.setState({ playlists: data });
 
 
@@ -42,7 +42,7 @@ export default class Playlists extends React.Component {
             return <p>A winner is you</p>
         } else {
             const mesComp = this.state.playlists['items'].map((playlist, key) =>
-                <Playlist key={key} name={playlist.name} image={playlist.images} alt={playlist.description} />
+                <Playlist key={key} playlistId={playlist.id} name={playlist.name} image={playlist.images} alt={playlist.description} />
             )
 
             return (
